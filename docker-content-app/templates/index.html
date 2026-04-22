@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Docker CMS</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        input, textarea { width: 300px; }
+        .post { border: 1px solid #ccc; padding: 10px; margin-top: 10px; }
+        .time { color: gray; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<h2>Content Management System</h2>
+
+<form method="POST">
+    <label>Title:</label><br>
+    <input type="text" name="title" required><br><br>
+
+    <label>Content:</label><br>
+    <textarea name="content" required></textarea><br><br>
+
+    <button type="submit">Add Post</button>
+</form>
+
+<hr>
+
+<h3>Saved Posts</h3>
+
+{% for post in posts %}
+<div class="post">
+    <b>{{ post.title }}</b><br>
+    {{ post.content }}<br>
+    <span class="time">{{ post.time }}</span><br>
+    <a href="/delete/{{ post.id }}">Delete</a>
+</div>
+{% else %}
+<p>No content yet.</p>
+{% endfor %}
+
+</body>
+</html>
